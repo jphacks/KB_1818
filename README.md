@@ -1,5 +1,5 @@
 
-# RMS（ Management System）
+# RMS（Refrigerator Management System）
 
 
 [![Product Name](image.png)](https://www.youtube.com/watch?v=G5rULR53uMk)
