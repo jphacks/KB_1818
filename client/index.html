@@ -2,24 +2,66 @@
 <meta charset=utf-8>
 <html lang="en">
 	<head>
-		<title>JOB</title>
+		<title>LIFF</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<a href="StreamDemo.html" style="position:absolute;left:350px;">GetUserMedia Demo</a>
-		<input id="Take-Picture" type="file" accept="image/*;capture=camera" />
+		
 		<div id="container">
-        
 			<canvas width="320" height="240" id="picture"></canvas>
-      <!-- <input id="takePicture" type="file" accept="image/*;capture=camera" /> -->
-      <canvas width="320" height="240" id="takePicture"></canvas>
+			<input id="Take-Picture" type="file" accept="image/*;capture=camera" />
+			<input type="file" name="video" accept="video/*" capture="environment">
+			<input type="file" accept="image/*" capture>
 			<p id="textbit"></p>
-    </div>
-    <video id="myVideo" width="400" height="300" autoplay="1" ></video>
-    <h2>Canvas</h2>
-    <canvas id="canvas"></canvas>
+		</div>
+		<video id="video" autoplay playsinline="true"></video>
+		<h2>Canvas</h2>
+		<canvas id="canvas"></canvas>
     <h2>Img</h2>
     <img id="img2">
+		<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 		<script type="text/javascript" src="./js/JOB.js"></script>
 		<script type="text/javascript" src="./js/scanBarcode.js"></script>
+		
+    <script>
+    // var video = document.getElementById('video');
+    // var constraints = {
+    //     audio: false,
+    //     video: {
+    //         // スマホのバックカメラを使用
+    //         facingMode: 'environment'
+    //     }
+    // };
+    // //  カメラの映像を取得
+    // navigator.mediaDevices.getUserMedia(constraints)
+    //     .then((stream) => {
+    //         video.srcObject = stream;
+    //     })
+    //     .catch((err) => {
+    //         window.alert(err.name + ': ' + err.message);
+    //     });
+    </script>
+		<script>
+			liff.init(
+				data => {
+					// Now you can call LIFF API
+					const userId = data.context.userId;
+					openWindowEX();
+				},
+				err => {
+					// LIFF initialization failed
+				}
+			);
+			function openWindowEX(){
+				var this_url = location.href;
+				liff.openWindow({
+					url:this_url,
+					external:true
+				});
+			}
+		</script>
+
 	</body>
 </html>
