@@ -3,27 +3,56 @@
 <html lang="en">
 	<head>
 		<title>LIFF</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="./css/index.css">
 	</head>
 	<body>
-		
-		<div id="container">
+			<div id="overlay" onclick="off()"><h1>Hay</h1></div>
+			<nav class="navbar navbar-default ">
+					  <div class="container-fluid">
+					  <!-- ヘッダー部分 ================ -->
+					    <div class="navbar-header">
+					      <a class="navbar-brand" href="#">Bootstap</a>
+					      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_target">
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					      </button>
+					    </div>
+					    </div>
+					  </div>
+					</nav>
+			<div id="canvas-container" class="container_parent">
+					<div class="container_child">
+							<video id="video" autoplay playsinline="true" class="rtc-video"></video>
+							<!-- <input type="file" name="video" accept="video/*" capture="environment"> -->
+					</div>
+				</div>
+
+		<div id="container" >
 			<canvas width="320" height="240" id="picture"></canvas>
 			<input id="Take-Picture" type="file" accept="image/*;capture=camera" />
-			<input type="file" name="video" accept="video/*" capture="environment">
+			<!-- <input type="file" name="video" accept="video/*" capture="environment"> -->
 			<input type="file" accept="image/*" capture>
 			<p id="textbit"></p>
 		</div>
-		<video id="video" autoplay playsinline="true"></video>
+		
 		<h2>Canvas</h2>
 		<canvas id="canvas"></canvas>
     <h2>Img</h2>
-    <img id="img2">
+		<img id="img2">
+
 		<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 		<script type="text/javascript" src="./js/JOB.js"></script>
 		<script type="text/javascript" src="./js/scanBarcode.js"></script>
+		<script type="text/javascript" src="./js/canvasResize.js"></script>
+		
+
+
+		
 		
     <script>
     // var video = document.getElementById('video');
