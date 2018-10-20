@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<html lang="en">
+	<head>
+		<title>JOB</title>
+	</head>
+	<body>
+		<a href="StreamDemo.html" style="position:absolute;left:350px;">GetUserMedia Demo</a>
+		<input id="Take-Picture" type="file" accept="image/*;capture=camera" />
+		<div id="container">
+        
+			<canvas width="320" height="240" id="picture"></canvas>
+      <!-- <input id="takePicture" type="file" accept="image/*;capture=camera" /> -->
+      <canvas width="320" height="240" id="takePicture"></canvas>
+			<p id="textbit"></p>
+    </div>
+    <video id="myVideo" width="400" height="300" autoplay="1" ></video>
+    <h2>Canvas</h2>
+    <canvas id="canvas"></canvas>
+    <h2>Img</h2>
+    <img id="img2">
+		<script type="text/javascript" src="./js/JOB.js"></script>
+		<script type="text/javascript" src="./js/scanBarcode.js"></script>
+	</body>
+</html>
