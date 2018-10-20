@@ -1,42 +1,116 @@
-<!DOCTYPE html>
-<head>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="../css/dialog.css">
+<script src="../js/lib/picker.js"></script>
+<script src="../js/lib/picker.date.js"></script>
+<script src="../js/lib/picker.time.js"></script>
+<!-- レガシーブラウザへの対応用ファイル -->
+<script src="../js/lib/legacy.js"></script>
+ 
+<!-- pickadate用スタイル -->
+<link rel="stylesheet" href="../js/lib/themes/default.css" id="theme_base">
+<link rel="stylesheet" href="../js/lib/themes/default.date.css" id="theme_date">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
-
-    <title>Narrow Jumbotron Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../css/editor.css" rel="stylesheet">
-    <link href="../css/dialog.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="narrow-jumbotron.css" rel="stylesheet">
-  </head>
-
-  <body class="vsc-initialized">
-
-    <div class="container">
-      <div class="header clearfix">
+<body class="vsc-initialized">
+    <div class="container-fluid">
+        <div class="header clearfix">
         <h3 class="text-muted">商品の登録</h3>
-      </div>
+        </div>
 
-      <div class="jumbotron">
+        <div class="jumbotron">
             <div class="container-fluid">
-        <p class="lead">
-            <img src="http://www.glico.co.jp/pretz/products/images/18_top_salad.png" height="128" width="128" style="">
-        </p><h1 class="display-3">プリッツ</h1>
-        <p class="lead">美味しいね<div class="container" style=""></div></p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">登録する</a></p>
-    </div>
-    </div>
+            <p class="lead">
+            <img src="http://www.glico.co.jp/pretz/products/images/18_top_salad.png" id="photo">
+            </p>
+            <h1 class="display-3" id = 'name'>プリッツ</h1>
+            <div class="container-fluid" id="calendar">
+                <input type="text" class="datepicker" id="date_box">
+            </div>
+
+            <p><a class="btn btn-lg btn-success" href="#" role="button" onclick="postFood()">登録する</a></p>
+            </div>
+        </div>
+
     </div> <!-- /container -->
+    <script>
+        $('#date_box').pickadate({
+            format: 'yyyy/mm/dd'
+        });
+    </script>
+    <script>
+        console.log(barcode);
+        getFoodInfo(barcode);
+        function getFoodInfo(barcode){
+          url = "https://4l6jtib5yd.execute-api.ap-northeast-1.amazonaws.com/dev/RMS_GetFoodname?barcode="+barcode;
+          var request = new XMLHttpRequest();
+          request.onreadystatechange = function () {
+          if (request.readyState != 4) {
+              // NGXg
+            } else if (request.status != 200) {
+              // ¸s
+            } else {
+                var results = JSON.parse(request.responseText);
+                console.log(results);
+
+                var foodName = results.FoodName;
+                var imageURL = results.imageURL;
+                setFood(foodName,imageURL);
+                console.log(response.body);
+            }
+          };
+          request.response = 'json';
+          request.open('GET', url);
+          request.send(null);
+        }
+        function setFood(foodName,imageURL){
+            var name = document.getElementById('name');
+            var photo = document.getElementById('photo');
+            name.innerHTML= foodName;
+            photo.src= imageURL;
+        }
+        function postFood(){
+            // userId = 'god';
+            // barcode = '4901550268888';
+            alert($('#date_box').val());
+            // 各フィールドから値を取得してJSONデータを作成
+            var data = {
+                UserID: userId,
+                Barcode: barcode,
+                ExYear: '2018',
+                ExMonth: '12',
+                ExDay: '21',
+                barcode: barcode,
+                FoodName: $('#name').html(),
+                imageURL: $('#photo').attr('src')
+            };
+            alert(JSON.stringify(data));
+
+            // 通信実行
+            $.ajax({
+                type:"post",                // method = "POST"
+                url:"https://4l6jtib5yd.execute-api.ap-northeast-1.amazonaws.com/dev/RMS_PostAllData",        // POST送信先のURL
+                data:JSON.stringify(data),  // JSONデータ本体
+                contentType: 'application/json', // リクエストの Content-Type
+                dataType: "json",           // レスポンスをJSONとしてパースする
+                success: function(json_data) {   // 200 OK時
+                    // JSON Arrayの先頭が成功フラグ、失敗の場合2番目がエラーメッセージ
+                    if (!json_data[0]) {    // サーバが失敗を返した場合
+                        alert("Transaction error. " + json_data[1]);
+                        return;
+                    }
+                    // 成功時処理
+                    // location.reload();
+                    console.log(json_data);
+                },
+                error: function() {         // HTTPエラー時
+                    alert("Server Error. Pleasy try again later.");
+                },
+                complete: function() {      // 成功・失敗に関わらず通信が終了した際の処理
+                    // button.attr("disabled", false);  // ボタンを再び enableにする
+                }
+            });
+        }
+    </script>
 </body>
-</html>
