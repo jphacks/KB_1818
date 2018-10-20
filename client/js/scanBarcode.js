@@ -5,12 +5,14 @@ var canvas =document.getElementById("picture");
 var ctx = canvas.getContext("2d");
 JOB.Init();
 JOB.SetImageCallback(function(result) {
+    console.log('setimage');
     if(result.length > 0){
         var tempArray = [];
         for(var i = 0; i < result.length; i++) {
             tempArray.push(result[i].Format+" : "+result[i].Value);
         }
         Result.innerHTML=tempArray.join("<br />");
+        console.log(tempArray);
     }else{
         if(result.length === 0) {
             Result.innerHTML="Decoding failed.";
@@ -97,8 +99,8 @@ function copyVideo(){
     var img = document.getElementById('img2');
 
     //videoの縦幅横幅を取得
-    var w = 400;//video.offsetWidth;
-    var h = 225;//video.offsetHeight;
+    var w = 200;//video.offsetWidth;
+    var h = 115;//video.offsetHeight;
 
     //同じサイズをcanvasに指定
     canvas.setAttribute("width", w);
@@ -115,9 +117,4 @@ function copyVideo(){
     JOB.DecodeImage(img);
 
     // scan();
-}
-
-document.getElementById("overlay").style.display = "block";
-function off() {
-    document.getElementById("overlay").style.display = "none";
 }

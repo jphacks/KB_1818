@@ -3,14 +3,15 @@
 <html lang="en">
 	<head>
 		<title>LIFF</title>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="./css/index.css">
+		<link rel="stylesheet" type="text/css" href="./css/modaal.css">
+		<script type="text/javascript" src="./js/modaal.js"></script>
 	</head>
 	<body>
-			<div id="overlay" onclick="off()"><h1>Hay</h1></div>
 			<nav class="navbar navbar-default ">
 					  <div class="container-fluid">
 					  <!-- ヘッダー部分 ================ -->
@@ -25,6 +26,9 @@
 					    </div>
 					  </div>
 					</nav>
+				<!-- <button class="inline2">Show</button> -->
+				
+
 			<div id="canvas-container" class="container_parent">
 					<div class="container_child">
 							<video id="video" autoplay playsinline="true" class="rtc-video"></video>
@@ -32,45 +36,29 @@
 					</div>
 				</div>
 
-		<div id="container" >
+		<div id="container">
 			<canvas width="320" height="240" id="picture"></canvas>
-			<input id="Take-Picture" type="file" accept="image/*;capture=camera" />
 			<!-- <input type="file" name="video" accept="video/*" capture="environment"> -->
 			<input type="file" accept="image/*" capture>
 			<p id="textbit"></p>
 		</div>
-		
-		<h2>Canvas</h2>
+		<div>
 		<canvas id="canvas"></canvas>
-    <h2>Img</h2>
 		<img id="img2">
+	</div>
+	<a href="./html/dialog.html" class="ajax">ajaxで取得しモーダルを開く</a>
 
 		<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 		<script type="text/javascript" src="./js/JOB.js"></script>
 		<script type="text/javascript" src="./js/scanBarcode.js"></script>
 		<script type="text/javascript" src="./js/canvasResize.js"></script>
-		
-
-
-		
-		
+				<!-- <button class="inline">Show</button>
+<div id="inline" style="display:none;">
+	Inline content goes here...
+</div> -->
     <script>
-    // var video = document.getElementById('video');
-    // var constraints = {
-    //     audio: false,
-    //     video: {
-    //         // スマホのバックカメラを使用
-    //         facingMode: 'environment'
-    //     }
-    // };
-    // //  カメラの映像を取得
-    // navigator.mediaDevices.getUserMedia(constraints)
-    //     .then((stream) => {
-    //         video.srcObject = stream;
-    //     })
-    //     .catch((err) => {
-    //         window.alert(err.name + ': ' + err.message);
-    //     });
+			$(".ajax").modaal({type:'ajax'});
+			$(".ajax").trigger("click");
     </script>
 		<script>
 			liff.init(
