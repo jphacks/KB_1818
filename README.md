@@ -80,7 +80,7 @@ LINEのアプリ上で一覧ボタンを押すと，
 * [WebRTC](https://webrtc.org/)：ブラウザからカメラへのアクセス
 
 
-![システム構成](https://i.imgur.com/pBL5TPm.png)
+![システム構成](https://i.imgur.com/WVnFI9B.png)
 
 #### デバイス
 * スマートフォン
