@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="../js/lib/themes/default.css" id="theme_base">
 <link rel="stylesheet" href="../js/lib/themes/default.date.css" id="theme_date">
 
-<body class="vsc-initialized">
+<body class="vsc-initialized" onchange="alert('change');">
     <div class="container-fluid">
         <div class="header clearfix">
         <h3 class="text-muted">商品の登録</h3>
@@ -21,7 +21,7 @@
 
         <div class="jumbotron" id='foodjumbo'>
 
-            <div class="container-fluid" id="food">
+            <div class="container-fluid" id="food" display="none">
             <p class="lead">
             <img src="" id="photo">
             </p>
@@ -41,11 +41,6 @@
 
     </div> <!-- /container -->
     <script>
-        $('#date_box').pickadate({
-            format: 'yyyy/mm/dd'
-        });
-    </script>
-    <script>
         // $(window).on('load',function(){
         //     alert('Hello');
         //     document.getElementById("food").style.display="none";
@@ -56,11 +51,34 @@
         //     document.getElementById("food").style.display="none";
         //     getFoodInfo(barcode);
         // }, false);
-        $(function(){
+        $(document).ready(function() {
             // alert('ready');
+            $('#date_box').pickadate({
+                format: 'yyyy/mm/dd'
+            });
             document.getElementById("food").style.display="none";
             getFoodInfo(barcode);
-        });
+
+        })
+        // $(function(){
+        //     // alert('ready');
+        //     $('#date_box').pickadate({
+        //         format: 'yyyy/mm/dd'
+        //     });
+        //     document.getElementById("food").style.display="none";
+        //     getFoodInfo(barcode);
+        // });
+
+        // display_none();
+
+        // function display_none(){
+        //     // alert('ready');
+        //     $('#date_box').pickadate({
+        //         format: 'yyyy/mm/dd'
+        //     });
+        //     document.getElementById("food").style.display="none";
+        //     getFoodInfo(barcode);
+        // }
         // userId=0;
         // barcode = '4901550268888';
         // setjambo();
@@ -112,14 +130,19 @@
             // barcode = '4901550268888';
             // alert($('#date_box').val());
             if($('#date_box').val() == ''){
-                alert('賞味期限を入力してください');
-                return;
+
+                // alert('賞味期限を入力してください');
+                // return;
+                var year = "2018";
+                var month = "11";
+                var day = "10";
+            }else{
+                var date = $('#date_box').val();
+                var res = date.split('/');
+                var year = res[0];
+                var month = res[1];
+                var day = res[2];
             }
-            var date = $('#date_box').val();
-            var res = date.split('/');
-            var year = res[0];
-            var month = res[1];
-            var day = res[2];
 
             // 各フィールドから値を取得してJSONデータを作成
             var data = {
