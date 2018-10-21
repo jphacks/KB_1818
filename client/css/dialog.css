@@ -35,3 +35,18 @@
     border: 2px solid #ccc;
     font-size: 20px;
 }
+
+#loading{
+    height: auto;
+    width: 20vw;
+}
+
+#loading_container{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.jumbotron{
+    background-color: #E1E1E1;
+}

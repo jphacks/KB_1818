@@ -19,17 +19,23 @@
         <h3 class="text-muted">商品の登録</h3>
         </div>
 
-        <div class="jumbotron">
-            <div class="container-fluid">
+        <div class="jumbotron" id='foodjumbo'>
+
+            <div class="container-fluid" id="food">
             <p class="lead">
-            <img src="http://www.glico.co.jp/pretz/products/images/18_top_salad.png" id="photo">
+            <img src="" id="photo">
             </p>
-            <h1 class="display-3" id = 'name'>プリッツ</h1>
+            <h1 class="display-3" id = 'name'></h1>
             <div class="container-fluid" id="calendar">
-                <input type="text" class="datepicker" id="date_box">
+                <input type="text" class="datepicker" id="date_box" style="position: relative">
             </div>
 
             <p><a class="btn btn-lg btn-success" href="#" role="button" onclick="postFood()">登録する</a></p>
+            </div>
+
+            <div class="container-fluid" id="loading_container">
+                <img src="../img/load.svg" alt="Loading..." id="loading"/>
+                <p>Loading...</p>
             </div>
         </div>
 
@@ -40,9 +46,28 @@
         });
     </script>
     <script>
-        console.log(barcode);
-        getFoodInfo(barcode);
+        // $(window).on('load',function(){
+        //     alert('Hello');
+        //     document.getElementById("food").style.display="none";
+        //     getFoodInfo(barcode);
+        // });
+        // window.addEventListener("pageshow", function() {
+        //     alert('page shown');
+        //     document.getElementById("food").style.display="none";
+        //     getFoodInfo(barcode);
+        // }, false);
+        $(function(){
+            // alert('ready');
+            document.getElementById("food").style.display="none";
+            getFoodInfo(barcode);
+        });
+        // userId=0;
+        // barcode = '4901550268888';
+        // setjambo();
+        // console.log(barcode);
+        // setjambo();
         function getFoodInfo(barcode){
+            // alert('+'+barcode+'+')
           url = "https://4l6jtib5yd.execute-api.ap-northeast-1.amazonaws.com/dev/RMS_GetFoodname?barcode="+barcode;
           var request = new XMLHttpRequest();
           request.onreadystatechange = function () {
@@ -53,6 +78,7 @@
             } else {
                 var results = JSON.parse(request.responseText);
                 console.log(results);
+                setjambo();
 
                 var foodName = results.FoodName;
                 var imageURL = results.imageURL;
@@ -64,6 +90,17 @@
           request.open('GET', url);
           request.send(null);
         }
+        function setjambo(){
+            // alert('');
+            document.getElementById("food").style.display="block";
+            document.getElementById("loading_container").style.display="none";
+            // var foodjumbo = document.getElementById('foodjumbo');
+            // foodjumbo.innerHTML = '<div class="container-fluid"><p class="lead"><img src="http://www.glico.co.jp/pretz/products/images/18_top_salad.png" id="photo"></p><h1 class="display-3" id = "name">プリッツ</h1><div class="container-fluid" id="calendar"><input type="text" class="datepicker" id="date_box"></div><p><a class="btn btn-lg btn-success" href="#" role="button" onclick="postFood()">登録する</a></p></div>'
+            // $('#date_box').pickadate({
+            //     format: 'yyyy/mm/dd'
+            // });
+
+        }
         function setFood(foodName,imageURL){
             var name = document.getElementById('name');
             var photo = document.getElementById('photo');
@@ -73,19 +110,29 @@
         function postFood(){
             // userId = 'god';
             // barcode = '4901550268888';
-            alert($('#date_box').val());
+            // alert($('#date_box').val());
+            if($('#date_box').val() == ''){
+                alert('賞味期限を入力してください');
+                return;
+            }
+            var date = $('#date_box').val();
+            var res = date.split('/');
+            var year = res[0];
+            var month = res[1];
+            var day = res[2];
+
             // 各フィールドから値を取得してJSONデータを作成
             var data = {
                 UserID: userId,
                 Barcode: barcode,
-                ExYear: '2018',
-                ExMonth: '12',
-                ExDay: '21',
+                ExYear: year,
+                ExMonth: month,
+                ExDay: day,
                 barcode: barcode,
                 FoodName: $('#name').html(),
                 imageURL: $('#photo').attr('src')
             };
-            alert(JSON.stringify(data));
+            // alert(JSON.stringify(data));
 
             // 通信実行
             $.ajax({
@@ -103,6 +150,8 @@
                     // 成功時処理
                     // location.reload();
                     console.log(json_data);
+                    alert('登録できました！');
+                    location.reload();
                 },
                 error: function() {         // HTTPエラー時
                     alert("Server Error. Pleasy try again later.");
