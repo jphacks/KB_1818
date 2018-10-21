@@ -2,7 +2,7 @@
 # RMS（Refrigerator Management System）
 
 
-[![Product Name](image.png)](https://youtu.be/_xNq3bSqzqY)
+[![Product Name](title.jpg)](https://youtu.be/_xNq3bSqzqY)
 
 ## 製品概要
 ### 冷蔵庫 x Tech
