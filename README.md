@@ -35,13 +35,19 @@ LINEのアプリ上で登録ボタンを押すと，
 その後，ユーザは食品の賞味期限を入力し，
 食品名と食品画像，食品の賞味期限を登録します．
 
+[![Product Name](toroku.png)](https://www.youtube.com/watch?v=G5rULR53uMk)
+
 LINEのアプリ上で一覧ボタンを押すと，
 登録された食品の情報（食品名，食品の画像，食品の賞味期限）をLINE上で確認することができます．
 また，表示された食品を食べたり捨てたりした場合は，
 「食べた」ボタンか「捨てた」ボタンを押すことでその食品の情報を削除することができます．
 
+[![Product Name](delite.png)](https://www.youtube.com/watch?v=G5rULR53uMk)
+
 さらに，期限の迫った食品の通知を行います．
 期限が迫って来るとLINE上で通知を行い，消費を促します．
+
+[![Product Name](spend.png)](https://www.youtube.com/watch?v=G5rULR53uMk)
 
 ### 特長
 
