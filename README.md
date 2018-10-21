@@ -76,9 +76,9 @@ LINEのアプリ上で一覧ボタンを押すと，
 
 #### フレームワーク・ライブラリ・モジュール
 * [AWS](https://aws.amazon.com/jp/) (API Gateway, Lambda, DynamoDB, S3)
-* [JOB](https://github.com/EddieLa/JOB)：バーコード認識ライブラリ
-* [WebRTC](https://webrtc.org/)：ブラウザからカメラへのアクセス
-
+* [LINE Front-end Framework](https://developers.line.me/ja/docs/liff/)：lineからブラウザの呼び出しに利用
+* [JOB](https://github.com/EddieLa/JOB)：バーコード認識に利用
+* [WebRTC](https://webrtc.org/)：ブラウザからカメラへのアクセスに利用
 
 ![システム構成](https://i.imgur.com/WVnFI9B.png)
 
