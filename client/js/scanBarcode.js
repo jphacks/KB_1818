@@ -12,7 +12,14 @@ JOB.SetImageCallback(function(result) {
             tempArray.push(result[i].Format+" : "+result[i].Value);
         }
         Result.innerHTML=tempArray.join("<br />");
+        var arraystr = tempArray.toString();
+        var res = arraystr.split(':');
+        var res2 = res[1].trim();
+        barcode = res2;
+        // alert(arraystr);
+        // alert(barcode);
         console.log(tempArray);
+        $(".ajax").trigger("click");
     }else{
         if(result.length === 0) {
             Result.innerHTML="Decoding failed.";

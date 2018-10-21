@@ -12,71 +12,28 @@
 		<script type="text/javascript" src="./js/modaal.js"></script>
 	</head>
 	<body>
-			<nav class="navbar navbar-default ">
-					  <div class="container-fluid">
-					  <!-- ヘッダー部分 ================ -->
-					    <div class="navbar-header">
-					      <a class="navbar-brand" href="#">Bootstap</a>
-					      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_target">
-					        <span class="icon-bar"></span>
-					        <span class="icon-bar"></span>
-					        <span class="icon-bar"></span>
-					      </button>
-					    </div>
-					    </div>
-					  </div>
-					</nav>
-				<!-- <button class="inline2">Show</button> -->
-				
-
-			<div id="canvas-container" class="container_parent">
-					<div class="container_child">
-							<video id="video" autoplay playsinline="true" class="rtc-video"></video>
-							<!-- <input type="file" name="video" accept="video/*" capture="environment"> -->
-					</div>
-				</div>
-
-		<div id="container">
-			<canvas width="320" height="240" id="picture"></canvas>
-			<!-- <input type="file" name="video" accept="video/*" capture="environment"> -->
-			<input type="file" accept="image/*" capture>
-			<p id="textbit"></p>
-		</div>
-		<div>
-		<canvas id="canvas"></canvas>
-		<img id="img2">
-	</div>
-	<a href="./html/dialog.html" class="ajax">ajaxで取得しモーダルを開く</a>
-
-		<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-		<script type="text/javascript" src="./js/JOB.js"></script>
-		<script type="text/javascript" src="./js/scanBarcode.js"></script>
-		<script type="text/javascript" src="./js/canvasResize.js"></script>
-				<!-- <button class="inline">Show</button>
-<div id="inline" style="display:none;">
-	Inline content goes here...
-</div> -->
-    <script>
-			$(".ajax").modaal({type:'ajax'});
-			$(".ajax").trigger("click");
-    </script>
+			<!--  -->
+			<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 		<script>
 			liff.init(
 				data => {
 					// Now you can call LIFF API
 					const userId = data.context.userId;
-					openWindowEX();
+					// alert(userId);
+					openWindowEX(userId);
 				},
 				err => {
 					// LIFF initialization failed
 				}
 			);
-			function openWindowEX(){
-				var this_url = location.href;
+			function openWindowEX(userId){
+				var this_url = 'https://s3-ap-northeast-1.amazonaws.com/rms-sokada/html/readBarcode.html?userId='+userId;
+				// alert(this_url);
 				liff.openWindow({
 					url:this_url,
 					external:true
 				});
+				liff.closeWindow();
 			}
 		</script>
 
