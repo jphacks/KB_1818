@@ -79,6 +79,9 @@ LINEのアプリ上で一覧ボタンを押すと，
 * [JOB](https://github.com/EddieLa/JOB)：バーコード認識ライブラリ
 * [WebRTC](https://webrtc.org/)：ブラウザからカメラへのアクセス
 
+
+![システム構成](https://i.imgur.com/pBL5TPm.png)
+
 #### デバイス
 * スマートフォン
 * タブレット
